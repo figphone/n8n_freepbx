@@ -1,27 +1,45 @@
 #!/bin/bash
 
-# install.sh for n8n_freepbx
+# Installing Custom Node for n8n
 
-set -e
+## Requirements
+- Docker installed on your system
+- n8n instance running (locally or on Docker)
 
-# Step 1: Clone the repository
-echo "Cloning n8n_freepbx repository..."
-git clone https://github.com/figphone/n8n_freepbx.git
+## Step 1: Clone the Repository
+```bash
+git clone https://github.com/your_username/n8n_freepbx.git
 cd n8n_freepbx
+```
 
-# Step 2: Build the Docker image
-echo "Building Docker image..."
-docker build -t n8n_freepbx .
+## Step 2: Docker Installation
+1. Build the Docker image:
+   ```bash
+   docker build -t n8n_freepbx .
+   ```
+2. Run the Docker container:
+   ```bash
+   docker run -d -p 5678:5678 n8n_freepbx
+   ```
 
-# Step 3: Create a Docker container
-echo "Creating Docker container..."
-docker run -d --name n8n_freepbx -p 5678:5678 -e N8N_BASIC_AUTH_USER=admin -e N8N_BASIC_AUTH_PASSWORD=password n8n_freepbx
+## Step 3: Local Installation
+1. Make sure you have the n8n and Node.js installed on your machine.
+2. Navigate to the cloned repository and install required dependencies:
+   ```bash
+   npm install
+   ```
 
-# Step 4: Access n8n
-echo "n8n is now running. You can access it at http://localhost:5678"
+## Step 4: Build the Node
+- To build the custom node, run:
+  ```bash
+  npm run build
+  ```
 
-# Step 5: Configure custom nodes
-echo "Configuring custom nodes..."
-# Add your custom node configuration steps here, if applicable.
+## Step 5: Verification
+1. Start your n8n instance.
+2. Open the n8n UI in your web browser at `http://localhost:5678`
+3. Check for the custom node in the node selection panel.
 
-echo "Installation and configuration complete!"
+## Notes
+- Ensure your Node.js version is compatible with n8n's requirements.
+- For further customization, edit the node's source files and rebuild as needed.
